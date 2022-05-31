@@ -1,0 +1,29 @@
+{
+  "notes": [
+    {
+      "name": "TypeScript",
+      "date": "31.05.2022",
+      "content": "Why TypeScript?"
+    },
+    {
+      "name": "React",
+      "date": "31.05.2022",
+      "content": "Love React"
+    },
+    {
+      "name": "Express",
+      "date": "31.05.2022",
+      "content": "Express things"
+    },
+    {
+      "name": "Mongoose",
+      "date": "31.05.2022",
+      "content": "Storing the data"
+    },
+    {
+      "name": "Rust",
+      "date": "31.05.2022",
+      "content": "Something not understandable"
+    }
+  ]
+}
