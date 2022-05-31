@@ -13,17 +13,28 @@ type Props = {
 
 const TableNotes = (props: Props) => {
   const data = useMemo(() => props.data, [props.data]);
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data }, useSortBy);
+  const { getTableBodyProps, headerGroups, rows, prepareRow } = useTable(
+    { columns, data },
+    useSortBy
+  );
   return (
     <Table striped bordered hover responsive className="text-center">
       <thead>
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((column) => (
-              <th {...column.getHeaderProps()} scope="col">
+            {headerGroup.headers.map((column: any) => (
+              <th
+                {...column.getHeaderProps(column.getSortByToggleProps())}
+                scope="col"
+              >
                 {column.render("Header")}
-                {column.Header === 'Name' ?  <i className="bi bi-sort-down" style={{marginLeft: '4px', cursor: 'pointer'}}></i> : null}
+                {column.Header !== "SmallClaims Notes Organizer"
+                  ? column.isSorted
+                    ? column.isSortedDesc
+                      ? " ▼"
+                      : " ▲"
+                    : ""
+                  : null}
               </th>
             ))}
           </tr>
