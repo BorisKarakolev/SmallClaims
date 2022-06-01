@@ -1,26 +1,31 @@
 {
   "notes": [
     {
+      "id": 1,
       "name": "TypeScript",
       "date": "31.05.2022",
       "content": "Why TypeScript?"
     },
     {
+      "id": 2,
       "name": "React",
       "date": "31.05.2022",
       "content": "Love React"
     },
     {
+      "id": 3,
       "name": "Express",
       "date": "31.05.2022",
       "content": "Express things"
     },
     {
+      "id": 4,
       "name": "Mongoose",
       "date": "31.05.2022",
       "content": "Storing the data"
     },
     {
+      "id": 5,
       "name": "Rust",
       "date": "31.05.2022",
       "content": "Something not understandable"

@@ -4,3 +4,8 @@ export interface Notes {
   contents: string
 }
 
+export interface Show {
+  show: boolean,
+  handleClose: () => void,
+  row: any
+}

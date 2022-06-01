@@ -1,8 +1,7 @@
 const express = require('express')
 const app = express()
 const fs = require('fs');
-const path = require('path');
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser')
 const port = 4200
 
 const DATA = require('./mockData.json')
@@ -15,13 +14,18 @@ app.use((req, res, next) => {
   next();
   });
 
+  const jsonParser = bodyParser.json()
+
 app.get('/', (req, res) => {
   try{
     res.status(200).json(DATA.notes);
   } catch (err) {
     res.status(400).json({message: "Can't find your links"})
   }
-  
+})
+
+app.put('/notes/:id', jsonParser, (req, res) => {
+  // TODO update JSON file
 })
 
 app.listen(port, () => {
