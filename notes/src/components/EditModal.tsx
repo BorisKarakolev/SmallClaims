@@ -29,7 +29,7 @@ const EditModal = ({ show, handleClose, row }: Show) => {
       )
       .then((res) => {
         handleClose();
-        return setAlertSuccess(true);
+        setAlertSuccess(true);
       })
       .catch((err) => setAlertFail(true));
   };

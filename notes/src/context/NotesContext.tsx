@@ -16,7 +16,7 @@ export const NotesDataProvider: React.FC<{ children: any }> = (props) => {
         alertSuccess,
         setAlertSuccess,
         alertFail,
-        setAlertFail
+        setAlertFail,
       }}
     >
       {props.children}
