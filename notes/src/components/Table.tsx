@@ -1,25 +1,22 @@
-import React, { useMemo, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 
 import { Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import { useTable, useSortBy } from "react-table";
-import { Notes } from "./Types";
+
+import { NotesDataContext } from "../context/NotesContext";
 import { columns } from "./Columns";
 
 import EditModal from "./EditModal";
 
-type Props = {
-  data: Notes[];
-};
-
-const TableNotes = (props: Props) => {
+const TableNotes = () => {
+  const { notes } = useContext(NotesDataContext);
   const [show, setShow] = useState<boolean>(false);
-  const [clickedRow, setClickedRow] = useState<object>({})
+  const [clickedRow, setClickedRow] = useState<object>({});
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
 
-  const data = useMemo(() => props.data, [props.data]);
+  const data = useMemo(() => notes, [notes]);
 
   const { getTableBodyProps, headerGroups, rows, prepareRow } = useTable(
     { columns, data },
@@ -27,7 +24,14 @@ const TableNotes = (props: Props) => {
   );
   return (
     <>
-      <Table striped bordered hover responsive variant="dark" className="text-center">
+      <Table
+        striped
+        bordered
+        hover
+        responsive
+        variant="dark"
+        className="text-center"
+      >
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
@@ -65,8 +69,8 @@ const TableNotes = (props: Props) => {
                         <i
                           className="bi bi-pencil-square"
                           onClick={() => {
-                            setClickedRow(row)
-                            handleShow()
+                            setClickedRow(row);
+                            handleShow();
                           }}
                         ></i>
                       ) : null}

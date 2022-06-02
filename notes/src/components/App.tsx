@@ -1,33 +1,21 @@
-import React, { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Alert, Spinner, Button } from "react-bootstrap";
 import axios from "axios";
 import TableNotes from "./Table";
-import { Notes } from "./Types";
+import { Notes } from "../types/Types";
+import { NotesDataContext } from "../context/NotesContext";
+import { downloadData } from "../utils/DownloadData";
 
 const App = () => {
-  const [data, setData] = useState<Notes[]>([]);
+  const { notes, setNotes } = useContext(NotesDataContext);
   const [isFetching, setIsFetching] = useState<boolean>(false);
-
-  const downloadData = (data: string, name: string = "notes.csv") => {
-    const blob = new Blob([data], { type: "octet-stream" });
-    const href = URL.createObjectURL(blob);
-    const a = Object.assign(document.createElement("a"), {
-      href,
-      style: "display:none",
-      download: name,
-    });
-    document.body.appendChild(a);
-    a.click();
-    URL.revokeObjectURL(href);
-    a.remove();
-  };
 
   useEffect(() => {
     setIsFetching(true);
     axios
       .get<Notes[]>("http://localhost:4200/")
       .then((res) => {
-        setData(res.data);
+        setNotes(res.data);
         setIsFetching(false);
       })
       .catch((err) => {
@@ -36,7 +24,7 @@ const App = () => {
       });
   }, []);
 
-  if (!data) return <div className="text-center">There is no notes!</div>;
+  if (!notes) return <div className="text-center">There is no notes!</div>;
   if (isFetching)
     return (
       <Spinner
@@ -47,8 +35,10 @@ const App = () => {
     );
   return (
     <div style={{ width: "40%", margin: "20px" }}>
-      <TableNotes data={data} />
-      <Button onClick={() => downloadData(JSON.stringify(data))} variant="primary">CSV</Button>
+      <TableNotes />
+      <Button onClick={() => downloadData(JSON.stringify(notes))} variant="dark">
+        CSV
+      </Button>
     </div>
   );
 };

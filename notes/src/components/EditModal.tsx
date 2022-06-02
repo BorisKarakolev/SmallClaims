@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Button, Form, Alert } from "react-bootstrap";
 import axios from "axios";
-import { Show } from "./Types";
+import { Show } from "../types/Types";
 
 const EditModal = ({ show, handleClose, row }: Show) => {
   const [name, setName] = useState<string>("");
@@ -26,7 +26,8 @@ const EditModal = ({ show, handleClose, row }: Show) => {
         }
       )
       .then((res) => {
-        return <Alert variant="success">Note has been updated</Alert>;
+        handleClose()
+        return <Alert variant="success">Note has been updated</Alert>
       })
       .catch((err) => <Alert variant="danger">Can't update your note</Alert>);
   };
@@ -44,6 +45,7 @@ const EditModal = ({ show, handleClose, row }: Show) => {
               type="text"
               value={row.values?.name}
               onChange={(e) => setName((row.values.name = e.target.value))}
+              required={true}
             />
           </Form.Group>
 
@@ -55,6 +57,7 @@ const EditModal = ({ show, handleClose, row }: Show) => {
               onChange={(e) =>
                 setContent((row.values.content = e.target.value))
               }
+              required={true}
             />
           </Form.Group>
           <Button variant="primary" type="submit">
