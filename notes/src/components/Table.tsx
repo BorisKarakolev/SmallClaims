@@ -8,7 +8,6 @@ import { Notes } from "./Types";
 import { columns } from "./Columns";
 
 import EditModal from "./EditModal";
-import { click } from "@testing-library/user-event/dist/click";
 
 type Props = {
   data: Notes[];
