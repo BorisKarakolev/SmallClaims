@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Modal, Button, Form, Alert } from "react-bootstrap";
 import axios from "axios";
 import { Show } from "../types/Types";
+import { NotesDataContext } from "../context/NotesContext";
 
 const EditModal = ({ show, handleClose, row }: Show) => {
+  const { setAlertSuccess, setAlertFail } = useContext(NotesDataContext);
   const [name, setName] = useState<string>("");
   const [content, setContent] = useState<string>("");
 
@@ -26,11 +28,22 @@ const EditModal = ({ show, handleClose, row }: Show) => {
         }
       )
       .then((res) => {
-        handleClose()
-        return <Alert variant="success">Note has been updated</Alert>
+        handleClose();
+        return setAlertSuccess(true);
       })
-      .catch((err) => <Alert variant="danger">Can't update your note</Alert>);
+      .catch((err) => setAlertFail(true));
   };
+
+  useEffect(() => {
+    const timeId = setTimeout(() => {
+      setAlertSuccess(false)
+      setAlertFail(false)
+    }, 1000)
+
+    return () => {
+      clearTimeout(timeId)
+    }
+  }, [onSubmitHandle]);
 
   return (
     <Modal show={show} onHide={handleClose}>

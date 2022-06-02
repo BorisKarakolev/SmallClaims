@@ -67,7 +67,7 @@ const TableNotes = () => {
                       {cell.column.Header === "Edit" ? (
                         <i
                           className="bi bi-pencil-square"
-                          style={{ cursor: 'pointer' }}
+                          style={{ cursor: "pointer" }}
                           onClick={() => {
                             setClickedRow(row);
                             handleShow();

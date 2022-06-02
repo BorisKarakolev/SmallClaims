@@ -1,8 +1,10 @@
-import { TableRowProps } from "react-table";
-
 export interface SomeProps {
   notes: Notes[];
   setNotes: (notes: Notes[]) => unknown;
+  alertSuccess: boolean;
+  setAlertSuccess: Function;
+  alertFail: boolean;
+  setAlertFail: Function;
 }
 
 export interface Notes {
@@ -15,5 +17,5 @@ export interface Notes {
 export interface Show {
   show: boolean;
   handleClose: () => void;
-  row: any
+  row: any;
 }

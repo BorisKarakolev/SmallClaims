@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Alert, Spinner, Button } from "react-bootstrap";
+import { Alert, Spinner, Button, Fade } from "react-bootstrap";
 import axios from "axios";
 import TableNotes from "./Table";
 import { Notes } from "../types/Types";
@@ -7,7 +7,8 @@ import { NotesDataContext } from "../context/NotesContext";
 import { downloadData } from "../utils/DownloadData";
 
 const App = () => {
-  const { notes, setNotes } = useContext(NotesDataContext);
+  const { notes, setNotes, alertSuccess, alertFail } =
+    useContext(NotesDataContext);
   const [isFetching, setIsFetching] = useState<boolean>(false);
 
   useEffect(() => {
@@ -33,6 +34,7 @@ const App = () => {
         alignItems: "center",
         justifyContent: "center",
         height: "100vh",
+        position: "relative",
       }}
     >
       {isFetching ? (
@@ -43,6 +45,23 @@ const App = () => {
         />
       ) : (
         <>
+          <Alert
+            alert-dismissible={true}
+            style={{ position: "absolute", placeSelf: "center", top: "10px" }}
+            show={alertSuccess}
+            variant="success"
+          >
+            <strong>Success!</strong> Note has been updated
+          </Alert>
+          <Alert
+            alert-dismissible={true}
+            transition={Fade}
+            style={{ position: "absolute", placeSelf: "center", top: "10px" }}
+            show={alertFail}
+            variant="danger"
+          >
+            <strong>Oops!</strong> Can't update your note
+          </Alert>
           <TableNotes />
           <Button
             onClick={() => downloadData(JSON.stringify(notes))}
