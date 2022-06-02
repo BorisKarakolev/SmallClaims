@@ -27,7 +27,7 @@ const App = () => {
       });
   }, []);
 
-  if (notes)
+  if (!notes)
     return (
       <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', placeSelf: 'center' }}>
         <h1 className="text-center">
