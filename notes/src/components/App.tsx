@@ -27,7 +27,15 @@ const App = () => {
       });
   }, []);
 
-  if (!notes) return <div className="text-center">There is no notes!</div>;
+  if (notes)
+    return (
+      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', placeSelf: 'center' }}>
+        <h1 className="text-center">
+          <i className="bi bi-inboxes"></i>
+        </h1>
+       <strong>No data to show</strong>
+      </div>
+    );
   return (
     <div
       style={{
