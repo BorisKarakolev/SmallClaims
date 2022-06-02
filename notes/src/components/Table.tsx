@@ -6,7 +6,6 @@ import { useTable, useSortBy } from "react-table";
 
 import { NotesDataContext } from "../context/NotesContext";
 import { columns } from "./Columns";
-
 import EditModal from "./EditModal";
 
 const TableNotes = () => {
@@ -58,7 +57,7 @@ const TableNotes = () => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
-                {row.cells.map((cell, index) => {
+                {row.cells.map((cell) => {
                   return (
                     <td
                       {...cell.getCellProps()}
@@ -68,6 +67,7 @@ const TableNotes = () => {
                       {cell.column.Header === "Edit" ? (
                         <i
                           className="bi bi-pencil-square"
+                          style={{ cursor: 'pointer' }}
                           onClick={() => {
                             setClickedRow(row);
                             handleShow();

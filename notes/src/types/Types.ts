@@ -12,16 +12,8 @@ export interface Notes {
   id: number;
 }
 
-export interface RowProps extends TableRowProps {
-  key: string;
-  values: {
-    Edit: undefined;
-    content: string;
-  };
-}
-
 export interface Show {
   show: boolean;
   handleClose: () => void;
-  row: any;
+  row: any
 }

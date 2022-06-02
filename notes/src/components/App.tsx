@@ -25,20 +25,34 @@ const App = () => {
   }, []);
 
   if (!notes) return <div className="text-center">There is no notes!</div>;
-  if (isFetching)
-    return (
-      <Spinner
-        animation="grow"
-        variant="dark"
-        style={{ width: "100px", height: "100px", margin: "50px" }}
-      />
-    );
   return (
-    <div style={{ width: "40%", margin: "20px" }}>
-      <TableNotes />
-      <Button onClick={() => downloadData(JSON.stringify(notes))} variant="dark">
-        CSV
-      </Button>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+      }}
+    >
+      {isFetching ? (
+        <Spinner
+          animation="grow"
+          variant="dark"
+          style={{ width: "100px", height: "100px", margin: "50px" }}
+        />
+      ) : (
+        <>
+          <TableNotes />
+          <Button
+            onClick={() => downloadData(JSON.stringify(notes))}
+            variant="dark"
+            style={{ width: "20%" }}
+          >
+            CSV
+          </Button>
+        </>
+      )}
     </div>
   );
 };
