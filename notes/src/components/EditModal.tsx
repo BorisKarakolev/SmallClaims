@@ -6,13 +6,15 @@ import { NotesDataContext } from "../context/NotesContext";
 
 const EditModal = ({ show, handleClose, row }: Show) => {
   const { setAlertSuccess, setAlertFail } = useContext(NotesDataContext);
-  const [name, setName] = useState<string>("");
-  const [content, setContent] = useState<string>("");
+  const [name, setName] = useState<string>(row.values?.name);
+  const [content, setContent] = useState<string>(row.values?.content);
 
   const onSubmitHandle = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    if (!name && !content) return;
-
+    if (!name && !content) {
+      handleClose();
+      return;
+    }
     axios
       .put(
         `http://localhost:4200/notes/${row.values?.id}`,
@@ -36,13 +38,13 @@ const EditModal = ({ show, handleClose, row }: Show) => {
 
   useEffect(() => {
     const timeId = setTimeout(() => {
-      setAlertSuccess(false)
-      setAlertFail(false)
-    }, 1000)
+      setAlertSuccess(false);
+      setAlertFail(false);
+    }, 1000);
 
     return () => {
-      clearTimeout(timeId)
-    }
+      clearTimeout(timeId);
+    };
   }, [onSubmitHandle]);
 
   return (

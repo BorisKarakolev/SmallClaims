@@ -18,6 +18,7 @@ const App = () => {
       .get<Notes[]>("http://localhost:4200/")
       .then((res) => {
         setNotes(res.data);
+        setGetAlert(false);
         setIsFetching(false);
       })
       .catch((err) => {
