@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Modal, Button, Form, Alert } from "react-bootstrap";
+import { Modal, Button, Form } from "react-bootstrap";
 import axios from "axios";
 import { Show } from "../types/Types";
 import { NotesDataContext } from "../context/NotesContext";
 
-const EditModal = ({ show, handleClose, row }: Show) => {
+const EditModal: React.FC<Show> = ({ show, handleClose, row }) => {
   const { setAlertSuccess, setAlertFail } = useContext(NotesDataContext);
   const [name, setName] = useState<string>(row.values?.name);
   const [content, setContent] = useState<string>(row.values?.content);

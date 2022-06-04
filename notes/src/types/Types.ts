@@ -1,10 +1,13 @@
+import React from "react";
+import { UseTableRowProps } from "react-table";
+
 export interface SomeProps {
   notes: Notes[];
   setNotes: (notes: Notes[]) => unknown;
   alertSuccess: boolean;
-  setAlertSuccess: Function;
   alertFail: boolean;
-  setAlertFail: Function;
+  setAlertSuccess: React.Dispatch<React.SetStateAction<boolean>>;
+  setAlertFail: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface Notes {
@@ -14,8 +17,10 @@ export interface Notes {
   id: number;
 }
 
+export interface ClickedRow extends UseTableRowProps<object> {}
+
 export interface Show {
   show: boolean;
   handleClose: () => void;
-  row: any;
+  row : ClickedRow['values']
 }
