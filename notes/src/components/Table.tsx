@@ -55,7 +55,6 @@ const TableNotes = () => {
         </thead>
         <tbody {...getTableBodyProps()}>
           {rows.map((row) => {
-             console.log("🚀 ~ file: Table.tsx ~ line 83 ~ {rows.map ~ row", row)
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
