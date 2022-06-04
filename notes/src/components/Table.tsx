@@ -7,11 +7,12 @@ import { useTable, useSortBy } from "react-table";
 import { NotesDataContext } from "../context/NotesContext";
 import { columns } from "./Columns";
 import EditModal from "./EditModal";
+import { ClickedRow } from "../types/Types";
 
 const TableNotes = () => {
   const { notes } = useContext(NotesDataContext);
   const [show, setShow] = useState<boolean>(false);
-  const [clickedRow, setClickedRow] = useState<object>({});
+  const [clickedRow, setClickedRow] = useState<ClickedRow>({id: '', values: {}});
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
 
@@ -54,6 +55,7 @@ const TableNotes = () => {
         </thead>
         <tbody {...getTableBodyProps()}>
           {rows.map((row) => {
+             console.log("🚀 ~ file: Table.tsx ~ line 83 ~ {rows.map ~ row", row)
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
@@ -69,7 +71,7 @@ const TableNotes = () => {
                           className="bi bi-pencil-square"
                           style={{ cursor: "pointer" }}
                           onClick={() => {
-                            setClickedRow(row);
+                            setClickedRow({values: row.values, id: row.id});
                             handleShow();
                           }}
                         ></i>

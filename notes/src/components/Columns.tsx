@@ -3,10 +3,6 @@ export const columns = [
     Header: "SmallClaims Notes Organizer",
     columns: [
       {
-        Header: "id",
-        accessor: "id",
-      },
-      {
         Header: "Name",
         accessor: "name",
       },

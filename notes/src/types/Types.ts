@@ -17,10 +17,13 @@ export interface Notes {
   id: number;
 }
 
-export interface ClickedRow extends UseTableRowProps<object> {}
+export interface ClickedRow {
+  id: UseTableRowProps<object>['id']
+  values: UseTableRowProps<object>['values']
+}
 
 export interface Show {
   show: boolean;
   handleClose: () => void;
-  row : ClickedRow['values']
+  row: ClickedRow
 }

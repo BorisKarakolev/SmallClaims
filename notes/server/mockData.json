@@ -1,31 +1,31 @@
 {
   "notes": [
     {
-      "id": 1,
+      "id": 0,
       "date": "31.05.2022",
       "name": "TypeScript",
-      "content": "Love it"
+      "content": "Very good thing"
     },
     {
-      "id": 2,
+      "id": 1,
       "name": "React",
       "date": "12.06.2022",
       "content": "Lovely React"
     },
     {
-      "id": 3,
+      "id": 2,
       "name": "Express",
       "date": "11.04.2022",
       "content": "Express things"
     },
     {
-      "id": 4,
+      "id": 3,
       "name": "Mongoose",
       "date": "24.05.2022",
       "content": "Storing the data"
     },
     {
-      "id": 5,
+      "id": 4,
       "name": "Rust",
       "date": "25.05.2022",
       "content": "Something not understandable"

@@ -17,7 +17,7 @@ const EditModal: React.FC<Show> = ({ show, handleClose, row }) => {
     }
     axios
       .put(
-        `http://localhost:4200/notes/${row.values?.id}`,
+        `http://localhost:4200/notes/${row.id}`,
         {
           name: name,
           content: content,
